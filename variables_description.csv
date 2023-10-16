@@ -1,0 +1,133 @@
+Variable,Description,Units,Source
+country,country name,(name),GADM
+iso3,country code,(code),GADM
+area_sqkm,land area,square km,
+FARMSYS,farming system name,(name),FAO
+Rural_Pop,rural population total,persons,WorldPop
+pop_densit,average population density,persons/square km,WorldPop
+ACOF_A,Harvest area of Arabica Coffee,hectares,SPAM
+BANA_A,Harvest area of Banana,hectares,SPAM
+BARL_A,Harvest area of Barley,hectares,SPAM
+BEAN_A,Harvest area of Bean,hectares,SPAM
+CASS_A,Harvest area of Cassava,hectares,SPAM
+CHIC_A,Harvest area of Chickpea,hectares,SPAM
+CNUT_A,Harvest area of Coconut,hectares,SPAM
+COCO_A,Harvest area of Cocoa,hectares,SPAM
+COTT_A,Harvest area of Cotton,hectares,SPAM
+COWP_A,Harvest area of Cowpeas,hectares,SPAM
+GROU_A,Harvest area of Groundnut,hectares,SPAM
+LENT_A,Harvest area of Lentil,hectares,SPAM
+MAIZ_A,Harvest area of Maize,hectares,SPAM
+OCER_A,Harvest area of Other Cereals,hectares,SPAM
+OFIB_A,Harvest area of Other Fibers,hectares,SPAM
+OILP_A,Harvest area of Oil Palm,hectares,SPAM
+OOIL_A,Harvest area of other Oil Crops,hectares,SPAM
+OPUL_A,Harvest area of Other Pulses,hectares,SPAM
+ORTS_A,Harvest area of other Roots ,hectares,SPAM
+PIGE_A,Harvest area of Pigeon Peas,hectares,SPAM
+PLNT_A,Harvest area of Plantain,hectares,SPAM
+PMIL_A,Harvest area of Pearl Millet ,hectares,SPAM
+POTA_A,Harvest area of Potato,hectares,SPAM
+RAPE_A,Harvest area of Rapeseed,hectares,SPAM
+RCOF_A,Harvest area of Robusta Coffee,hectares,SPAM
+REST_A,Harvest area of Rest of Crops,hectares,SPAM
+RICE_A,Harvest area of Rice,hectares,SPAM
+SESA_A,Harvest area of Sesame Seed,hectares,SPAM
+SMIL_A,Harvest area of Small Millet,hectares,SPAM
+SORG_A,Harvest area of Sorghum,hectares,SPAM
+SOYB_A,Harvest area of Soybean,hectares,SPAM
+SUGB_A,Harvest area of Sugar beet,hectares,SPAM
+SUGC_A,Harvest area of Sugarcane,hectares,SPAM
+SUNF_A,Harvest area of Sunflower,hectares,SPAM
+SWPO_A,Harvest area of Sweet Potato,hectares,SPAM
+TEAS_A,Harvest area of Tea,hectares,SPAM
+TEMF_A,Harvest area of Temperate Fruit,hectares,SPAM
+TOBA_A,Harvest area of Tobacco,hectares,SPAM
+TROF_A,Harvest area of Tropical fruits,hectares,SPAM
+VEGE_A,Harvest area of Vegetable,hectares,SPAM
+WHEA_A,Harvest area of Wheat,hectares,SPAM
+YAMS_A,Harvest area of Yams,hectares,SPAM
+ACOF_P,Production of Arabica Coffee,MT,SPAM
+BANA_P,Production of Banana,MT,SPAM
+BARL_P,Production of Barley,MT,SPAM
+BEAN_P,Production of Bean,MT,SPAM
+CASS_P,Production of Cassava,MT,SPAM
+CHIC_P,Production of Chickpea ,MT,SPAM
+CNUT_P,Production of Coconut,MT,SPAM
+COCO_P,Production of Cocoa,MT,SPAM
+COTT_P,Production of Cotton,MT,SPAM
+COWP_P,Production of Cowpeas,MT,SPAM
+GROU_P,Production of Groundnuts,MT,SPAM
+LENT_P,Production of Lentil,MT,SPAM
+MAIZ_P,Production of Maize,MT,SPAM
+OCER_P,Production of Other Cereals,MT,SPAM
+OFIB_P,Production of Other Fibres,MT,SPAM
+OILP_P,Production of  Oilpalm,MT,SPAM
+OOIL_P,Production of Other Oil Crops,MT,SPAM
+OPUL_P,Production of Other Pulses,MT,SPAM
+ORTS_P,Production of Other Roots,MT,SPAM
+PIGE_P,Production of Pigeon Pea,MT,SPAM
+PLNT_P,Production of Plantain,MT,SPAM
+PMIL_P,Production of Pearl Millet ,MT,SPAM
+POTA_P,Production of Potato,MT,SPAM
+RAPE_P,Production of Rapeseed ,MT,SPAM
+RCOF_P,Production of Robusta Coffee,MT,SPAM
+REST_P,Production of Rest Of Crops ,MT,SPAM
+RICE_P,Production of Rice,MT,SPAM
+SESA_P,Production of Sesame Seed,MT,SPAM
+SMIL_P,Production of Small Millet,MT,SPAM
+SORG_P,Production of Sorghum,MT,SPAM
+SOYB_P,Production of Soybean,MT,SPAM
+SUGB_P,Production of Sugarbeet ,MT,SPAM
+SUGC_P,Production of Sugarcane,MT,SPAM
+SUNF_P,Production of Sunflower,MT,SPAM
+SWPO_P,Production of Sweet Potato,MT,SPAM
+TEAS_P,Production of Tea,MT,SPAM
+TEMF_P,Production of Temperate Fruit,MT,SPAM
+TOBA_P,Production of Tobacco,MT,SPAM
+TROF_P,Production of  Tropical Fruit ,MT,SPAM
+VEGE_P,Production of Vegetables,MT,SPAM
+WHEA_P,Production of Wheat,MT,SPAM
+YAMS_P,Production of Yams,MT,SPAM
+ACOF_Y,Yield of Arabica Coffee,MT/ha,SPAM
+BANA_Y,Yield of Banana,MT/ha,SPAM
+BARL_Y,Yield of Barley,MT/ha,SPAM
+BEAN_Y,Yield of Bean,MT/ha,SPAM
+CASS_Y,Yield of Cassava,MT/ha,SPAM
+CHIC_Y,Yield of Chickpea,MT/ha,SPAM
+CNUT_Y,Yield of Coconut,MT/ha,SPAM
+COCO_Y,Yield of Cocoa,MT/ha,SPAM
+COTT_Y,Yieldof Cotton,MT/ha,SPAM
+COWP_Y,Yield of cowpea,MT/ha,SPAM
+GROU_Y,Yield of Groundnut,MT/ha,SPAM
+LENT_Y,Yield of Lentil,MT/ha,SPAM
+MAIZ_Y,Yield of Maize,MT/ha,SPAM
+OCER_Y,Yield of Other Cereals,MT/ha,SPAM
+OFIB_Y,Yield of Other Fibers,MT/ha,SPAM
+OILP_Y,Yield of Oilpalm,MT/ha,SPAM
+OOIL_Y,Yield of Other Oil crops,MT/ha,SPAM
+OPUL_Y,Yield of Other Pulses,MT/ha,SPAM
+ORTS_Y,Yield of Other Roots,MT/ha,SPAM
+PIGE_Y,Yield of Pigeon Pea,MT/ha,SPAM
+PLNT_Y,Yield of Plantain,MT/ha,SPAM
+PMIL_Y,Yield of Pearl Millet ,MT/ha,SPAM
+POTA_Y,Yield of potato,MT/ha,SPAM
+RAPE_Y,Yieldof rapeseed,MT/ha,SPAM
+RCOF_Y,Yield of Robusta Coffee,MT/ha,SPAM
+REST_Y,Yield of Rest Of Crops ,MT/ha,SPAM
+RICE_Y,Yield of rice,MT/ha,SPAM
+SESA_Y,Yield of sesame seed,MT/ha,SPAM
+SMIL_Y,Yield Small Millet,MT/ha,SPAM
+SORG_Y,Yield of sorghum,MT/ha,SPAM
+SOYB_Y,Yield of soybean,MT/ha,SPAM
+SUGB_Y,Yield of Sugarbeet,MT/ha,SPAM
+SUGC_Y,Yield of Sugarcane,MT/ha,SPAM
+SUNF_Y,Yield of Sunflower,MT/ha,SPAM
+SWPO_Y,Yield of Sweetpotato,MT/ha,SPAM
+TEAS_Y,Yield of Tea,MT/ha,SPAM
+TEMF_Y,Yield of Temperate Fruit,MT/ha,SPAM
+TOBA_Y,Yield of Tobacco,MT/ha,SPAM
+TROF_Y,Yield of Tropical Fruit ,MT/ha,SPAM
+VEGE_Y,Yield of Vegetable,MT/ha,SPAM
+WHEA_Y,Yield of Wheat,MT/ha,SPAM
+YAMS_Y,Yield of Yams,MT/ha,SPAM
