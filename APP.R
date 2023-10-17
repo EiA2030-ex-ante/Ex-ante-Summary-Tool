@@ -7,11 +7,13 @@ library(DT)
 
 # Load the shapefile with countries, farming systems, population, and spam data
 All_shapefile <- sf::read_sf("spam_RuralPop_Country_Farmsyst.shp")
-
 All_csv <- read.csv("FarmSys_pop_spam_world.csv")
-
 variable_descriptions <- read.csv("variables_description.csv")
 
+# Pre-select the first country, farming system, and crop
+default_country <- unique(All_csv$country)[1]
+default_farming_system <- unique(All_csv$FARMSYS[All_csv$country == default_country])[1]
+default_crop <- "ACOF_A"
 
 ui <- fluidPage(
   titlePanel("Geospatial Data For Global Targeting of Investments in Agronomic Gains"),
@@ -20,28 +22,59 @@ ui <- fluidPage(
              sidebarLayout(
                sidebarPanel(
                  selectizeInput("multiple_selected_countries", "Select Countries", 
-                                choices = unique(All_csv$country), multiple = TRUE),
+                                choices = unique(All_csv$country), 
+                                selected = default_country,
+                                multiple = TRUE),
                  selectizeInput("multiple_selected_farming_systems", "Select Farming Systems", 
-                                choices = NULL, multiple = TRUE),  # Initialize with NULL choices
-                 radioButtons("selected_crop", "Select Crop", 
-                              choices = c(
-                                "ACOF_A", "BANA_A", "BARL_A", "BEAN_A", "CASS_A", "CHIC_A", "CNUT_A", "COCO_A", 
-                                "COTT_A", "COWP_A", "GROU_A", "LENT_A", "MAIZ_A", "OCER_A", "OFIB_A", "OILP_A", 
-                                "OOIL_A", "OPUL_A", "ORTS_A", "PIGE_A", "PLNT_A", "PMIL_A", "POTA_A", "RAPE_A", 
-                                "RCOF_A", "REST_A", "RICE_A", "SESA_A", "SMIL_A", "SORG_A", "SOYB_A", "SUGB_A", 
-                                "SUGC_A", "SUNF_A", "SWPO_A", "TEAS_A", "TEMF_A", "TOBA_A", "TROF_A", "VEGE_A", 
-                                "WHEA_A", "YAMS_A", "ACOF_P", "BANA_P", "BARL_P", "BEAN_P", "CASS_P", "CHIC_P", 
-                                "CNUT_P", "COCO_P", "COTT_P", "COWP_P", "GROU_P", "LENT_P", "MAIZ_P", "OCER_P", 
-                                "OFIB_P", "OILP_P", "OOIL_P", "OPUL_P", "ORTS_P", "PIGE_P", "PLNT_P", "PMIL_P", 
-                                "POTA_P", "RAPE_P", "RCOF_P", "REST_P", "RICE_P", "SESA_P", "SMIL_P", "SORG_P", 
-                                "SOYB_P", "SUGB_P", "SUGC_P", "SUNF_P", "SWPO_P", "TEAS_P", "TEMF_P", "TOBA_P", 
-                                "TROF_P", "VEGE_P", "WHEA_P", "YAMS_P", "ACOF_Y", "BANA_Y", "BARL_Y", "BEAN_Y", 
-                                "CASS_Y", "CHIC_Y", "CNUT_Y", "COCO_Y", "COTT_Y", "COWP_Y", "GROU_Y", "LENT_Y", 
-                                "MAIZ_Y", "OCER_Y", "OFIB_Y", "OILP_Y", "OOIL_Y", "OPUL_Y", "ORTS_Y", "PIGE_Y", 
-                                "PLNT_Y", "PMIL_Y", "POTA_Y", "RAPE_Y", "RCOF_Y", "REST_Y", "RICE_Y", "SESA_Y", 
-                                "SMIL_Y", "SORG_Y", "SOYB_Y", "SUGB_Y", "SUGC_Y", "SUNF_Y", "SWPO_Y", "TEAS_Y", 
-                                "TEMF_Y", "TOBA_Y", "TROF_Y", "VEGE_Y", "WHEA_Y", "YAMS_Y"
-                              )),
+                                choices = NULL, 
+                                selected = default_farming_system,
+                                multiple = TRUE),  # Initialize with NULL choices
+                 checkboxGroupInput("selected_crops", "Select Crops", 
+                                    choices = sort(c(
+                                      "ACOF_A", "ACOF_P", "ACOF_Y",
+                                      "BANA_A", "BANA_P", "BANA_Y",
+                                      "BARL_A", "BARL_P", "BARL_Y",
+                                      "BEAN_A", "BEAN_P", "BEAN_Y",
+                                      "CASS_A", "CASS_P", "CASS_Y",
+                                      "CHIC_A", "CHIC_P", "CHIC_Y",
+                                      "CNUT_A", "CNUT_P", "CNUT_Y",
+                                      "COCO_A", "COCO_P", "COCO_Y",
+                                      "COTT_A", "COTT_P", "COTT_Y",
+                                      "COWP_A", "COWP_P", "COWP_Y",
+                                      "GROU_A", "GROU_P", "GROU_Y",
+                                      "LENT_A", "LENT_P", "LENT_Y",
+                                      "MAIZ_A", "MAIZ_P", "MAIZ_Y",
+                                      "OCER_A", "OCER_P", "OCER_Y",
+                                      "OFIB_A", "OFIB_P", "OFIB_Y",
+                                      "OILP_A", "OILP_P", "OILP_Y",
+                                      "OOIL_A", "OOIL_P", "OOIL_Y",
+                                      "OPUL_A", "OPUL_P", "OPUL_Y",
+                                      "ORTS_A", "ORTS_P", "ORTS_Y",
+                                      "PIGE_A", "PIGE_P", "PIGE_Y",
+                                      "PLNT_A", "PLNT_P", "PLNT_Y",
+                                      "PMIL_A", "PMIL_P", "PMIL_Y",
+                                      "POTA_A", "POTA_P", "POTA_Y",
+                                      "RAPE_A", "RAPE_P", "RAPE_Y",
+                                      "RCOF_A", "RCOF_P", "RCOF_Y",
+                                      "REST_A", "REST_P", "REST_Y",
+                                      "RICE_A", "RICE_P", "RICE_Y",
+                                      "SESA_A", "SESA_P", "SESA_Y",
+                                      "SMIL_A", "SMIL_P", "SMIL_Y",
+                                      "SORG_A", "SORG_P", "SORG_Y",
+                                      "SOYB_A", "SOYB_P", "SOYB_Y",
+                                      "SUGB_A", "SUGB_P", "SUGB_Y",
+                                      "SUGC_A", "SUGC_P", "SUGC_Y",
+                                      "SUNF_A", "SUNF_P", "SUNF_Y",
+                                      "SWPO_A", "SWPO_P", "SWPO_Y",
+                                      "TEAS_A", "TEAS_P", "TEAS_Y",
+                                      "TEMF_A", "TEMF_P", "TEMF_Y",
+                                      "TOBA_A", "TOBA_P", "TOBA_Y",
+                                      "TROF_A", "TROF_P", "TROF_Y",
+                                      "VEGE_A", "VEGE_P", "VEGE_Y",
+                                      "WHEA_A", "WHEA_P", "WHEA_Y",
+                                      "YAMS_A", "YAMS_P", "YAMS_Y"
+                                    )),
+                                    selected = default_crop)  # Pre-select first crop
                ),
                mainPanel(
                  tableOutput("data_table_multiple"),
@@ -84,8 +117,6 @@ ui <- fluidPage(
   )
 )
 
-
-
 server <- function(input, output, session) {
   
   # Update the choices for the "Select Farming System" dropdown based on the selected country
@@ -93,7 +124,7 @@ server <- function(input, output, session) {
     selected_countries <- input$multiple_selected_countries
     if (!is.null(selected_countries)) {
       farming_systems <- unique(All_csv$FARMSYS[All_csv$country %in% selected_countries])
-      updateSelectInput(session, "multiple_selected_farming_systems", choices = farming_systems)
+      updateSelectInput(session, "multiple_selected_farming_systems", choices = farming_systems, selected = default_farming_system)
     }
   })
   
@@ -103,17 +134,18 @@ server <- function(input, output, session) {
               All_csv$FARMSYS %in% input$multiple_selected_farming_systems, ]
   })
   
-  # Filter data based on selected crop
+  # Filter data based on selected crops
   filtered_data <- reactive({
-    dataset_column <- input$selected_crop
+    dataset_columns <- input$selected_crops
     multiple_filtered_data() %>%
-      select(country, iso3, area_sqkm, FARMSYS, Rural_Pop, pop_densit, dataset_column)
+      select(country, iso3, area_sqkm, FARMSYS, Rural_Pop, pop_densit, !!!dataset_columns)
   })
   
   # Render the filtered data table for multiple selection
   output$data_table_multiple <- renderTable({
     if (!is.null(input$multiple_selected_countries) && 
-        !is.null(input$multiple_selected_farming_systems)) {
+        !is.null(input$multiple_selected_farming_systems) &&
+        !is.null(input$selected_crops)) {
       filtered_data()
     }
   })
@@ -123,7 +155,7 @@ server <- function(input, output, session) {
     selected_country_multiple <- input$multiple_selected_countries
     selected_farming_system_multiple <- input$multiple_selected_farming_systems
     
-    if (!is.null(selected_country_multiple) && !is.null(selected_farming_system_multiple)) {
+    if (!is.null(selected_country_multiple) && !is.null(selected_farming_system_multiple) && !is.null(input$selected_crops)) {
       filtered_shape_multiple <- All_shapefile %>%
         filter(country %in% selected_country_multiple, FARMSYS %in% selected_farming_system_multiple)
       
@@ -145,7 +177,8 @@ server <- function(input, output, session) {
     },
     content = function(file) {
       if (!is.null(input$multiple_selected_countries) && 
-          !is.null(input$multiple_selected_farming_systems)) {
+          !is.null(input$multiple_selected_farming_systems) &&
+          !is.null(input$selected_crops)) {
         write.csv(filtered_data(), file, row.names = FALSE)
       }
     }
