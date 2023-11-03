@@ -1,10 +1,10 @@
-Variable,Description,Units,Source
-country,country name,(name),GADM
-iso3,country code,(code),GADM
-area_sqkm,land area,square km,
+VARIABLE,DESCRIPTION,UNITS,SOURCE
+COUNTRY,country name,(name),GADM
+ISO3,country code,(code),GADM
+AREA_SQKM,land area,square km,
 FARMSYS,farming system name,(name),FAO
-Rural_Pop,rural population total,persons,WorldPop
-pop_densit,average population density,persons/square km,WorldPop
+RURAL_POP,rural population total,persons,WorldPop
+POP_DENSIT,average population density,persons/square km,WorldPop
 ACOF_A,Harvest area of Arabica Coffee,hectares,SPAM
 BANA_A,Harvest area of Banana,hectares,SPAM
 BARL_A,Harvest area of Barley,hectares,SPAM
