@@ -104,20 +104,27 @@ ui <- fluidPage(
                  ),
                  fluidRow(
                    column(
-                     width = 6, 
-                     img(src = "https://www.cgiar.org/wp/wp-content/themes/cgiar/assets/images/logo-04dd455e58-04dd455e58.png", width = "10%")
+                     width = 12,
+                     h5("Data Sources"),
+                     HTML(' <a href="https://gadm.org/data.html">GADM</a>, <a href="https://data.apps.fao.org/map/catalog/static/api/records/4e463d70-7593-11db-b9b2-000d939bc5d8">FAO</a>, <a href="https://hub.worldpop.org/project/categories?id=3">WorldPop</a>, <a href="https://data.apps.fao.org/catalog/iso/59f7a5ef-2be4-43ee-9600-a6a9e9ff562a">SPAM</a>')
                    ),
-                   column(
-                     width = 6,
-                     img(src = "https://s3.amazonaws.com/eventtia/event_logos/31142/medium/eialogovrgb16569197111656919711.png?1656919711", width = "10%")
-                   )
+                   fluidRow(
+                     column(
+                       width = 6, 
+                       img(src = "https://www.cgiar.org/wp/wp-content/themes/cgiar/assets/images/logo-04dd455e58-04dd455e58.png", width = "10%")
+                     ),
+                     column(
+                       width = 6,
+                       img(src = "https://s3.amazonaws.com/eventtia/event_logos/31142/medium/eialogovrgb16569197111656919711.png?1656919711", width = "10%")
+                     )
+                   ),
+                   
                  )
                )
              )
     )
   )
 )
-
 
 
 server <- function(input, output, session) {
