@@ -1,0 +1,225 @@
+---
+title: "User Guide For Ex Ante Summary tool"
+output:
+  html_document:
+    theme: bootstrap
+    toc: true
+    toc_float: true
+---
+
+# Introduction
+
+<a href="https://agronomyapp.shinyapps.io/Agronomics_geospatial_data/">The Ex Ante Shiny app</a> is a web-based tool that was developed in R as part of Excellence in Agronomy (EiA).  It serves as a decision support tool for targeting objectives and estimating initial ex ante impact for agronomy projects. It is designed to provide insights into the potential impact of investments in different farming systems across countries. The app uses geospatial data to help users identify targeting objectives, such as the number of beneficiaries, when detailed data are not readily available.
+
+The app is global in scope and allows users to select two nested levels of geography: (i) country, and (ii) farming system, as well as information about the crops grown and the current level of agronomic practices.The app offers an intuitive interface that allows you to explore a diverse range of agricultural variables, including crop types, production quantities, and yield estimates. This guide book will help you understand how to use the tool effectively.
+
+
+# Data Sources
+
+The app utilizes data from various sources, including:
+
+- <a href="https://gadm.org/data.html">GADM</a>,
+
+- <a href="https://data.apps.fao.org/map/catalog/static/api/records/4e463d70-7593-11db-b9b2-000d939bc5d8">FAO</a>, 
+
+- <a href="https://hub.worldpop.org/project/categories?id=3">WorldPop</a>, and
+
+- <a href="https://data.apps.fao.org/catalog/iso/59f7a5ef-2be4-43ee-9600-a6a9e9ff562a">SPAM</a>.
+
+
+# The User Interface
+
+The app is divided into two main tabs: "Selection" and "About."
+
+
+## Selection Tab
+
+In this tab, users can make selections based on countries, farming systems, and crops. The main features include:
+
+- Data Table: Displays filtered data based on user selections.
+
+- Download Button: Allows users to download the filtered data as a CSV file.
+
+- Map: Visualizes selected countries and farming systems on a leaflet map.
+
+- Numeric Inputs: Control parameters for calculations, such as Farming Share of Rural Population, Average Household Size, Technology Adoption Rate, and Expected % Yield Gain.
+
+The Numeric inputs are the assumptions that you will have to make before using the Ex-ante summary tool. Here is a brief description of the assumptions. 
+
+- Farming Share of Rural Population (FSRP): This is the percentage of the rural population engaged in farming. For example, if you assume that 70% of the rural population is engaged in farming, FSRP would be 0.70.
+
+- Average Household Size (AHS): This is the average number of people in a household. For example, if you assume an average household size of 5, AHS would be 5.
+
+- Share of Target Population Adopting the Technology (STPAT): This is the percentage of the target population that adopts the technology or practices promoted by the investment. For example, if you assume that 50% of the target population adopts the technology, STPAT would be 0.50.
+
+- Expected Percentage Yield Gain (EPYG): This is the expected percentage increase in yield due to the investment. For example, if you expect a 20% increase in yield, EPYG would be 0.20.
+
+
+## About Tab
+
+This tab provides information about the app, its purpose, and the sources of data. Key elements include:
+
+- About this App: Describes the purpose of the decision support tool.
+
+- Variable Descriptions: Displays a table describing various variables used in the app.
+
+- Data Sources: Lists the sources of geospatial data.
+
+
+# Example Case Studies
+
+## Case study 1
+
+### 1. Select Geography and Crop
+
+  - [Open the Ex Ante Shiny app](https://agronomyapp.shinyapps.io/Agronomics_geospatial_data/)
+  
+- In the "Selection" tab, choose Kenya as the country and maize mixed as the farming system.
+- Select maize as the crops you want to analyze.
+
+![Selection Tab](H:/CIMMYT Shiny project/Revised_shinyapp/app1.png)
+    *Figure 1: Case Study 1 Selection*
+    
+  
+### 2. Download File    
+
+- Click the "Download CSV (Selection)" button to obtain the filtered data.
+
+![Download Filtered Data](H:/CIMMYT Shiny project/Revised_shinyapp/download1.png)
+       *Figure 2: Downloaded Filtered Data*
+       
+### 3. Calculating Ex Ante Outcome Estimates
+
+Given the data and assumptions from the aplication:
+
+Assumptions:
+
+- FSRP: 70%
+
+- AHS: 4
+
+- STPAT: 30% 
+
+- EPYG: 20%
+
+downloaded data above:
+
+- Physical area of maize (MAIZ_A) = 1503594.9 hectares
+
+- Production of maize (MAIZ_P) = 2464944.3 MT
+
+- Yield of maize (MAIZ_Y) = 1.64 MT/ha (calculated as MAIZ_P / MAIZ_A)
+    
+#### Calculations:
+
+(a). **Expected Number of Investment Beneficiaries**
+
+Expected Number of Beneficiaries = (RURAL_POP * FSRP) / AHS * STPAT
+
+Expected Number of Beneficiaries = (37434184.99 * 0.70) / 4 * 0.30 ≈ 1965294.71
+
+≈ 1965294.71
+
+
+(b). **Expected Average Yield Gain**
+
+Expected Average Yield Gain = MAIZ_Y * EPYG
+
+Expected Average Yield Gain = 1.64 MT/ha * 0.20 = 0.33 MT/ha
+
+≈ 0.33 MT/ha
+
+(c). ***Expected Production Gain***
+
+Expected Production Gain = MAIZ_P * EPYG
+
+Expected Production Gain = 2464944.3 MT * 0.20 ≈ 492988.86 MT
+
+≈ 492,988.86 MT
+
+
+## Case study 2
+
+### 1. Select Geography and Crop
+
+- In the "Selection" tab, choose Malawi as the country and Cereal-root crops mixed
+as the farming systems you're interested in.
+
+- Select Coffee as the crops you want to analyze.
+![Case Study 2 Selection](H:/CIMMYT Shiny project/Revised_shinyapp/app2.png)
+*Figure 3: Case Study 2 Selection*
+
+
+### 2. Download File 
+
+![Download Filtered Data](H:/CIMMYT Shiny project/Revised_shinyapp/download2.png)
+
+*Figure 4: Downloaded Filtered Data*
+
+### 3. Calculate Ex Ante Outcome Estimates
+
+Given the data and assumptions:
+
+Assumptions:
+
+- FSRP: 70%
+
+- AHS: 5
+
+- STPAT: 50%
+
+- EPYG: 30%
+
+
+Downloaded data above:
+
+- Physical area of coffee (ACOF_A) = 2093.199988 hectares
+
+- Production of coffee (ACOF_P) = 3521.399981 MT
+
+- Yield of coffee (ACOF_Y) = 1.68 MT/ha
+
+
+
+#### Calculations:
+
+
+(a). **Expected Number of Investment Beneficiaries**
+
+Expected Number of Beneficiaries=(RURAL_POP×FSRP)/AHS×STPAT
+
+Expected Number of Beneficiaries = (2093.199988×0.70)/5×0.50 ≈ 146.52
+
+ ≈ 146.52 
+
+(b). **Expected Average Yield Gain**
+
+
+Expected Average Yield Gain = ACOF_Y×EPYG
+
+Expected Average Yield Gain = 1.68MT/ha×0.30 ≈0.50 MT/ha
+
+ ≈ 0.50MT/ha
+
+
+(c). **Expected Production Gain**
+
+
+Expected Production Gain = ACOF_P×EPYG
+
+Expected Production Gain = 3521.399981MT×0.30 ≈ 1056.42MT
+
+ ≈ 1056.42MT
+ 
+# Acknowledgments
+
+This work was supported by <a href="https://www.cimmyt.org/">CIMMYT</a>. It was developed as part of <a href="https://www.cgiar.org/initiative/excellence-in-agronomy/">Excellence in Agronomy (EiA) </a>, one of the initiatives of <a href="https://www.cgiar.org/food-security-impact/one-cgiar/">One CGIAR</a>.
+
+
+<footer style="text-align:center; margin-top: 50px;">
+  <img src="https://www.cgiar.org/wp/wp-content/themes/cgiar/assets/images/logo-04dd455e58-04dd455e58.png" alt="CGIAR Logo" width="100" style="margin: 10px;">
+  <img src="https://storage.googleapis.com/cgiarorg/2018/02/Horizontal-CIMMYT-logo-in-green-color-1440x169.png" alt="CIMMYT Logo" width="100" style="margin: 10px;">
+  <img src="https://s3.amazonaws.com/eventtia/event_logos/31142/medium/eialogovrgb16569197111656919711.png?1656919711" alt="EiA Logo" width="100" style="margin: 10px;">
+</footer>
+
+    
