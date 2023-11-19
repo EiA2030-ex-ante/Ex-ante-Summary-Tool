@@ -5,6 +5,9 @@ AREA_SQKM,land area,square km,
 FARMSYS,farming system name,(name),FAO
 RURAL_POP,rural population total,persons,WorldPop
 POP_DENSIT,average population density,persons/square km,WorldPop
+Expected_Beneficiaries,Expected Number of Investment Beneficiaries,persons, (RURAL_POP * FSRP) / AHS * STPAT
+Expected_Yield_Gain,Expected Average Yield Gain,MT/ha,Yield * EPYG
+Expected_Production_Gain,Expected Production Gain,MT,Production * EPYG
 ACOF_A,Harvest area of Arabica Coffee,hectares,SPAM
 BANA_A,Harvest area of Banana,hectares,SPAM
 BARL_A,Harvest area of Barley,hectares,SPAM
