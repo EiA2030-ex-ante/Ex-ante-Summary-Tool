@@ -60,6 +60,7 @@ crop_names <- list(
 default_country <- unique(All_csv$COUNTRY)[1]
 default_farming_system <- unique(All_csv$FARMSYS[All_csv$COUNTRY == default_country])[1]
 
+# Define UI
 ui <- fluidPage(
   titlePanel("Geospatial Data For Global Targeting of Investments in Agronomic Gains"),
   tabsetPanel(
@@ -73,14 +74,24 @@ ui <- fluidPage(
                  selectizeInput("multiple_selected_farming_systems", "Select Farming Systems", 
                                 choices = NULL, 
                                 selected = default_farming_system,
-                                multiple = TRUE),  # Initialize with NULL choices
+                                multiple = TRUE),
                  checkboxGroupInput("selected_crops", "Select Crops", 
                                     choices = names(crop_names))
                ),
                mainPanel(
-                 tableOutput("data_table_multiple"),
-                 leafletOutput("map_multiple"),
-                 downloadButton("downloadCSV_multiple", "Download CSV (Selection)")
+                 dataTableOutput("data_table_multiple"),
+                 downloadButton("downloadCSV_multiple", "Download CSV (Selection)"),
+                 
+                 fluidRow(
+                   column(6, leafletOutput("map_multiple")),
+                   column(6, 
+                          # Add your other numeric inputs here
+                          numericInput("farm_share", "Farming Share of Rural Population(FSRP)", value = 0.7, min = 0, max = 1),
+                          numericInput("avg_household_size", "Average Household Size(AHS)", value = 4, min = 1, max = 10),
+                          numericInput("tech_adoption_rate", "Share of Target Population Adopting Technology(STPAT)", value = 0.3, min = 0, max = 1),
+                          numericInput("expected_yield_gain", "Expected % Yield Gain(EPYG)", value = 0.2, min = 0, max = 1)
+                   )
+                 )
                )
              ),
              fluidRow(
@@ -96,16 +107,16 @@ ui <- fluidPage(
                column(
                  width = 12,
                  h4("About this App"),
-                 HTML("This decision support tool was developed to support the identification of targeting objectives (e.g., number of targeted beneficiaries) and associated initial ex ante impact estimates for agronomy projects in cases where detailed data are not available. This work was developed as part of Excellence in Agronomy (EiA), one of the initiatives of <a href='https://www.cgiar.org/food-security-impact/one-cgiar/'>One CGIAR</a>. Code used in assembly of this tool is available at the <a href='https://github.com/EiA2030-ex-ante'>EiA GitHub Repository</a>."
+                 HTML("This decision support tool was developed to support the identification of targeting objectives (e.g., the number of targeted beneficiaries) and associated initial ex ante impact estimates for agronomy projects in cases where detailed data are not available. This work was developed as part of Excellence in Agronomy (EiA), one of the initiatives of <a href='https://www.cgiar.org/food-security-impact/one-cgiar/'>One CGIAR</a>. The code used in the assembly of this tool is available at the <a href='https://github.com/EiA2030-ex-ante'>EiA GitHub Repository</a>."
                  ),
-                 h5("Variable Descriptions"),
+                 h4("Variable Descriptions"),
                  div(style = "overflow-x: auto;",
                      DTOutput("variable_descriptions_table")
                  ),
                  fluidRow(
                    column(
                      width = 12,
-                     h5("Data Sources"),
+                     h4("Data Sources"),
                      HTML(' <a href="https://gadm.org/data.html">GADM</a>, <a href="https://data.apps.fao.org/map/catalog/static/api/records/4e463d70-7593-11db-b9b2-000d939bc5d8">FAO</a>, <a href="https://hub.worldpop.org/project/categories?id=3">WorldPop</a>, <a href="https://data.apps.fao.org/catalog/iso/59f7a5ef-2be4-43ee-9600-a6a9e9ff562a">SPAM</a>')
                    ),
                    fluidRow(
@@ -127,6 +138,7 @@ ui <- fluidPage(
 )
 
 
+# Define Server
 server <- function(input, output, session) {
   
   # Update the choices for the "Select Farming System" dropdown based on the selected country
@@ -154,15 +166,46 @@ server <- function(input, output, session) {
       select(all_of(dataset_columns))
   })
   
-  # Render the filtered data table for multiple selection
-  output$data_table_multiple <- renderTable({
+  # Define a reactive function to calculate values and add them to the data
+  enriched_data <- reactive({
     if (!is.null(input$multiple_selected_countries) && 
         !is.null(input$multiple_selected_farming_systems)) {
-      filtered_data()
+      filtered_data <- filtered_data()
+      
+      farm_share <- input$farm_share
+      avg_household_size <- input$avg_household_size
+      tech_adoption_rate <- input$tech_adoption_rate
+      expected_yield_gain <- input$expected_yield_gain
+      
+      # Calculate expected beneficiaries for each unique combination of 'COUNTRY', 'FARMSYS', and 'AREA_SQKM'
+      expected_beneficiaries <- filtered_data %>%
+        group_by(COUNTRY, FARMSYS, AREA_SQKM) %>%
+        summarise(Expected_Beneficiaries = (sum(RURAL_POP) * farm_share) / avg_household_size * tech_adoption_rate)
+      
+      # Calculate expected yield and production gain for selected crops
+      for (crop_col in names(filtered_data)[grepl("_Y$", names(filtered_data))]) {
+        crop_name <- sub("_Y$", "", crop_col)
+        filtered_data[paste("Expected_Yield_Gain_", crop_name, sep = "")] <- filtered_data[crop_col] * expected_yield_gain
+        production_col <- paste(crop_name, "_P", sep = "")
+        filtered_data[paste("Expected_Production_Gain_", crop_name, sep = "")] <- filtered_data[production_col] * expected_yield_gain
+      }
+      
+      # Merge the calculated values back to the original dataset
+      enriched_data <- left_join(filtered_data, expected_beneficiaries, by = c("COUNTRY", "FARMSYS", "AREA_SQKM"))
+      
+      return(enriched_data)
     }
   })
   
-  # Render the map based on selected country and farming system for multiple selection
+  # Render the enriched data table for multiple selections
+  output$data_table_multiple <- renderDataTable({
+    if (!is.null(input$multiple_selected_countries) && 
+        !is.null(input$multiple_selected_farming_systems)) {
+      enriched_data()
+    }
+  }, rownames = FALSE)
+  
+  # Render the map based on selected country and farming system for multiple selections
   output$map_multiple <- renderLeaflet({
     selected_country_multiple <- input$multiple_selected_countries
     selected_farming_system_multiple <- input$multiple_selected_farming_systems
@@ -182,7 +225,7 @@ server <- function(input, output, session) {
     }
   })
   
-  # Define a download handler for the download button for multiple selection
+  # Define a download handler for the download button for multiple selections
   output$downloadCSV_multiple <- downloadHandler(
     filename = function() {
       "Filtered_data_multiple.csv"
@@ -190,7 +233,7 @@ server <- function(input, output, session) {
     content = function(file) {
       if (!is.null(input$multiple_selected_countries) && 
           !is.null(input$multiple_selected_farming_systems)) {
-        write.csv(filtered_data(), file, row.names = FALSE)
+        write.csv(enriched_data(), file, row.names = FALSE)
       }
     }
   )
@@ -202,6 +245,6 @@ server <- function(input, output, session) {
   })
 }
 
+# Run the application
 shinyApp(ui, server)
-
 
