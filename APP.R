@@ -57,8 +57,9 @@ crop_names <- list(
 )
 
 # Pre-select the first country, farming system
-default_country <- unique(All_csv$COUNTRY)[1]
+default_country <- unique(All_csv$COUNTRY)[48]
 default_farming_system <- unique(All_csv$FARMSYS[All_csv$COUNTRY == default_country])[1]
+default_crop <- "MAIZE"
 
 # Define UI
 ui <- fluidPage(
@@ -76,6 +77,7 @@ ui <- fluidPage(
                                 selected = default_farming_system,
                                 multiple = TRUE),
                  checkboxGroupInput("selected_crops", "Select Crops", 
+                                    selected = default_crop,
                                     choices = names(crop_names))
                ),
                mainPanel(
@@ -86,10 +88,10 @@ ui <- fluidPage(
                    column(6, leafletOutput("map_multiple")),
                    column(6, 
                           # Add your other numeric inputs here
-                          numericInput("farm_share", "Farming Share of Rural Population(FSRP)", value = 0.7, min = 0, max = 1),
-                          numericInput("avg_household_size", "Average Household Size(AHS)", value = 4, min = 1, max = 10),
-                          numericInput("tech_adoption_rate", "Share of Target Population Adopting Technology(STPAT)", value = 0.3, min = 0, max = 1),
-                          numericInput("expected_yield_gain", "Expected % Yield Gain(EPYG)", value = 0.2, min = 0, max = 1)
+                          numericInput("farm_share", "Farming Share of Rural Population (FSRP)", value = 0.7, min = 0, max = 1),
+                          numericInput("avg_household_size", "Average Household Size (AHS)", value = 4, min = 1, max = 10),
+                          numericInput("tech_adoption_rate", "Share of Target Population Adopting Technology (STPAT)", value = 0.3, min = 0, max = 1),
+                          numericInput("expected_yield_gain", "Expected % Yield Gain (EPYG)", value = 0.2, min = 0, max = 1)
                    )
                  )
                )
