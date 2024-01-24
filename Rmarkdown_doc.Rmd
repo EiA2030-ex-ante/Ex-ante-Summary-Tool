@@ -2,14 +2,17 @@
 title: "User Guide for the Agronomic Ex Ante Explorer"
 output:
   html_document:
-    theme: bootstrap
+    theme:
+      version: 4
+      bootswatch: litera
     toc: true
     toc_float: true
 ---
 
+
 # Introduction
 
-The <a href="https://agronomyapp.shinyapps.io/Agronomics_geospatial_data/">Agronomic Ex Ante Explorer</a> is a tool designed to enable users to develop a reasonable starting point for structured ex ante estimates of potential beneficiaries and benefits to a prospective agronomy investment, in cases where limited data resources are available for more comprehensive and rigorous ex ante evaluations. It is not intended to obviate more rigorous analysis, where data enable such work. However, it may be a useful tool for assembling some initial estimates of the potential number of beneficiaries of an agronomy project focused on a particular crop and geography, as well as offering a structured way to make underlying assumptions (e.g., on adoption rates, yield gains to adoption) explicit. 
+The <a href="https://cimmyt-apps.shinyapps.io/Agronomics_geospatial_data/">Agronomic Ex Ante Explorer</a> is a tool designed to enable users to develop a reasonable starting point for structured ex ante estimates of potential beneficiaries and benefits to a prospective agronomy investment, in cases where limited data resources are available for more comprehensive and rigorous ex ante evaluations. It is not intended to obviate more rigorous analysis, where data enable such work. However, it may be a useful tool for assembling some initial estimates of the potential number of beneficiaries of an agronomy project focused on a particular crop and geography, as well as offering a structured way to make underlying assumptions (e.g., on adoption rates, yield gains to adoption) explicit. 
 
 This guide is intended to walk users through an example of how such a tool may be used. It makes reference to this web-based tool. The tool was developed as part of the ex ante analytical resources assembled under the Excellence in Agronomy (EiA) initiative of the One CGIAR. 
 
@@ -64,12 +67,12 @@ In this example, we develop a structured estimate the potential returns to an ag
 
 ### 1. Select Geography and Crop
 
-  - [Open the Agronomic Ex Ante Explorer](https://agronomyapp.shinyapps.io/Agronomics_geospatial_data/)
+  - [Open the Agronomic Ex Ante Explorer](https://cimmyt-apps.shinyapps.io/Agronomics_geospatial_data/)
   
 - In the "Selection" tab, choose Kenya as the country and maize mixed as the farming system.
 - Select maize as the crops you want to analyze.
 
-![Selection Tab](H:/CIMMYT Shiny project/Revised_shinyapp/app1.png)
+![](H:/CIMMYT Shiny project/R markdown document/Case Study 1 Selection.png)
     *Figure 1: Case Study 1 Selection*
     
   
@@ -77,12 +80,12 @@ In this example, we develop a structured estimate the potential returns to an ag
 
 - Click the "Download CSV (Selection)" button to obtain the filtered data.
 
-![Download Filtered Data](H:/CIMMYT Shiny project/Revised_shinyapp/download1.png)
+![](H:/CIMMYT Shiny project/R markdown document/Downloaded Filtered Data 1.png)
        *Figure 2: Downloaded Filtered Data*
        
 ### 3. Calculating Ex Ante Outcome Estimates
 
-Given the data and assumptions from the aplication:
+Given the data and assumptions from the application:
 
 Assumptions:
 
@@ -137,17 +140,16 @@ In this example, we follow a similar logic to develop an initial estimate of the
 
 ### 1. Select Geography and Crop
 
-- In the "Selection" tab, choose Malawi as the country and Cereal-root crops mixed
-as the farming systems you're interested in.
+- In the "Selection" tab, choose Malawi as the country and Cereal-root crops mixed as the farming systems you're interested in.
 
 - Select Coffee as the crops you want to analyze.
-![Case Study 2 Selection](H:/CIMMYT Shiny project/Revised_shinyapp/app2.png)
+![](H:/CIMMYT Shiny project/R markdown document/Case Study 2 Selection.png)
 *Figure 3: Case Study 2 Selection*
 
 
 ### 2. Download File 
 
-![Download Filtered Data](H:/CIMMYT Shiny project/Revised_shinyapp/download2.png)
+![](H:/CIMMYT Shiny project/R markdown document/Downloaded Filtered Data 2.png)
 
 *Figure 4: Downloaded Filtered Data*
 
@@ -172,7 +174,7 @@ Downloaded data above:
 
 - Production of coffee (ACOF_P) = 3521.399981 MT
 
-- Yield of coffee (ACOF_Y) = 1.68 MT/ha
+- Yield of coffee (ACOF_Y) = 1.682304606 MT/ha
 
 
 
@@ -183,18 +185,18 @@ Downloaded data above:
 
 Expected Number of Beneficiaries=(RURAL_POP×FSRP)/AHS×STPAT
 
-Expected Number of Beneficiaries = (2093.199988×0.70)/5×0.50 ≈ 146.52
+Expected Number of Beneficiaries = (5226790.57×0.70)/5×0.50 ≈365875.3399
 
- ≈ 146.52 
+ ≈ 365875.34
 
 (b). **Expected Average Yield Gain**
 
 
 Expected Average Yield Gain = ACOF_Y×EPYG
 
-Expected Average Yield Gain = 1.68MT/ha×0.30 ≈0.50 MT/ha
+Expected Average Yield Gain = 1.682304606 MT/ha × 0.30 ≈0.50 MT/ha
 
- ≈ 0.50MT/ha
+ ≈ 0.50 MT/ha
 
 
 (c). **Expected Production Gain**
@@ -202,9 +204,9 @@ Expected Average Yield Gain = 1.68MT/ha×0.30 ≈0.50 MT/ha
 
 Expected Production Gain = ACOF_P×EPYG
 
-Expected Production Gain = 3521.399981MT×0.30 ≈ 1056.42MT
+Expected Production Gain = 3521.399981 MT × 0.30 ≈ 1056.4199943 MT
 
- ≈ 1056.42MT
+ ≈ 1056.42 MT
  
  
 # Data Sources
