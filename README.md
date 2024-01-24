@@ -72,7 +72,7 @@ In this example, we develop a structured estimate the potential returns to an ag
 - In the "Selection" tab, choose Kenya as the country and maize mixed as the farming system.
 - Select maize as the crops you want to analyze.
 
-![](H:/CIMMYT Shiny project/R markdown document/Case Study 1 Selection.png)
+![](/Case Study 1 Selection.png)
     *Figure 1: Case Study 1 Selection*
     
   
@@ -80,7 +80,7 @@ In this example, we develop a structured estimate the potential returns to an ag
 
 - Click the "Download CSV (Selection)" button to obtain the filtered data.
 
-![](H:/CIMMYT Shiny project/R markdown document/Downloaded Filtered Data 1.png)
+![](/Downloaded Filtered Data 1.png)
        *Figure 2: Downloaded Filtered Data*
        
 ### 3. Calculating Ex Ante Outcome Estimates
@@ -143,13 +143,13 @@ In this example, we follow a similar logic to develop an initial estimate of the
 - In the "Selection" tab, choose Malawi as the country and Cereal-root crops mixed as the farming systems you're interested in.
 
 - Select Coffee as the crop you want to analyze.
-![](H:/CIMMYT Shiny project/R markdown document/Case Study 2 Selection.png)
+![](/Case Study 2 Selection.png)
 *Figure 3: Case Study 2 Selection*
 
 
 ### 2. Download File 
 
-![](H:/CIMMYT Shiny project/R markdown document/Downloaded Filtered Data 2.png)
+![](/Downloaded Filtered Data 2.png)
 
 *Figure 4: Downloaded Filtered Data*
 
