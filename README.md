@@ -143,13 +143,13 @@ In this example, we follow a similar logic to develop an initial estimate of the
 - In the "Selection" tab, choose Malawi as the country and Cereal-root crops mixed as the farming systems you're interested in.
 
 - Select Coffee as the crop you want to analyze.
-![](H:/CIMMYT Shiny project/R markdown document/Case Study 2 Selection.png)
+![](Case Study 2 Selection.png)
 *Figure 3: Case Study 2 Selection*
 
 
 ### 2. Download File 
 
-![](H:/CIMMYT Shiny project/R markdown document/Downloaded Filtered Data 2.png)
+![](Downloaded Filtered Data 2.png)
 
 *Figure 4: Downloaded Filtered Data*
 
