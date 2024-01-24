@@ -72,7 +72,7 @@ In this example, we develop a structured estimate the potential returns to an ag
 - In the "Selection" tab, choose Kenya as the country and maize mixed as the farming system.
 - Select maize as the crops you want to analyze.
 
-![](/Case Study 1 Selection.png)
+![case study 1](/Case Study 1 Selection.png)
     *Figure 1: Case Study 1 Selection*
     
   
