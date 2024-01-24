@@ -72,7 +72,7 @@ In this example, we develop a structured estimate the potential returns to an ag
 - In the "Selection" tab, choose Kenya as the country and maize mixed as the farming system.
 - Select maize as the crops you want to analyze.
 
-![](Case Study 1 Selection.png)
+![]([Case Study 1 Selection.png](https://github.com/EiA2030-ex-ante/Ex-ante-Summary-Tool/blob/main/Case%20Study%201%20Selection.png))
     *Figure 1: Case Study 1 Selection*
     
   
@@ -80,7 +80,7 @@ In this example, we develop a structured estimate the potential returns to an ag
 
 - Click the "Download CSV (Selection)" button to obtain the filtered data.
 
-![](Downloaded Filtered Data 1.png)
+![]([Downloaded Filtered Data 1.png](https://github.com/EiA2030-ex-ante/Ex-ante-Summary-Tool/blob/main/Downloaded%20Filtered%20Data%201.png))
        *Figure 2: Downloaded Filtered Data*
        
 ### 3. Calculating Ex Ante Outcome Estimates
@@ -143,13 +143,13 @@ In this example, we follow a similar logic to develop an initial estimate of the
 - In the "Selection" tab, choose Malawi as the country and Cereal-root crops mixed as the farming systems you're interested in.
 
 - Select Coffee as the crops you want to analyze.
-![](Case Study 2 Selection.png)
+![]([Case Study 2 Selection.png](https://github.com/EiA2030-ex-ante/Ex-ante-Summary-Tool/blob/main/Case%20Study%202%20Selection.png))
 *Figure 3: Case Study 2 Selection*
 
 
 ### 2. Download File 
 
-![](Downloaded Filtered Data 2.png)
+![]([Downloaded Filtered Data 2.png](https://github.com/EiA2030-ex-ante/Ex-ante-Summary-Tool/blob/main/Downloaded%20Filtered%20Data%202.png))
 
 *Figure 4: Downloaded Filtered Data*
 
