@@ -1,12 +1,13 @@
 library(shiny)
 library(shinythemes)
 library(sf)
+library(bslib)
 library(dplyr)
 library(leaflet)
 library(DT)
 
 # Load the shapefile with countries, farming systems, population, and spam data
-All_shapefile <- sf::read_sf("spam_RuralPop_Country_Farmsyst.shp")
+All_shapefile <- sf::st_read("spam_RuralPop_Country_Farmsyst.shp")
 All_csv <- read.csv("FarmSys_pop_spam_world.csv")
 variable_descriptions <- read.csv("variables_description.csv")
 
@@ -61,9 +62,16 @@ default_country <- unique(All_csv$COUNTRY)[48]
 default_farming_system <- unique(All_csv$FARMSYS[All_csv$COUNTRY == default_country])[1]
 default_crop <- "MAIZE"
 
-# Define UI
-ui <- fluidPage(
+# Define UI for application
+ui <- shinyUI(fluidPage(
+  theme = bs_theme(bg = "rgb(249, 247, 245)", 
+                   fg = "rgb(59, 37, 2)",
+                   primary = "#5579B6",
+                   font_scale = 0.7, bootswatch = "litera"),
+  
+  # Application title
   titlePanel("Geospatial Data For Global Targeting of Investments in Agronomic Gains"),
+  
   tabsetPanel(
     tabPanel("Selection",
              sidebarLayout(
@@ -109,8 +117,10 @@ ui <- fluidPage(
                column(
                  width = 12,
                  h4("About this App"),
-                 HTML("This decision support tool was developed to support the identification of targeting objectives (e.g., the number of targeted beneficiaries) and associated initial ex ante impact estimates for agronomy projects in cases where detailed data are not available. This work was developed as part of Excellence in Agronomy (EiA), one of the initiatives of <a href='https://www.cgiar.org/food-security-impact/one-cgiar/'>One CGIAR</a>. The code used in the assembly of this tool is available at the <a href='https://github.com/EiA2030-ex-ante'>EiA GitHub Repository</a>."
+                 
+                 HTML("This decision support tool was developed to support the identification of targeting objectives (e.g., the number of targeted beneficiaries) and associated initial ex ante impact estimates for agronomy projects in cases where detailed data are not available. This work was developed as part of <a href='https://www.cgiar.org/initiative/excellence-in-agronomy/'>Excellence in Agronomy (EiA)</a>, one of the initiatives of <a href='https://www.cgiar.org/food-security-impact/one-cgiar/'>One CGIAR</a>. The code used in the assembly of this tool is available at the <a href='https://github.com/EiA2030-ex-ante'>EiA GitHub Repository</a>. For further discussion of how to use this tool, please see <a href='https://eia2030-ex-ante.github.io/Ex-ante-Summary-Tool/'> this guide</a>."
                  ),
+                 
                  h4("Variable Descriptions"),
                  div(style = "overflow-x: auto;",
                      DTOutput("variable_descriptions_table")
@@ -123,21 +133,19 @@ ui <- fluidPage(
                    ),
                    fluidRow(
                      column(
-                       width = 6, 
+                       width = 12, 
+                       img(src = "https://s3.amazonaws.com/eventtia/event_logos/31142/medium/eialogovrgb16569197111656919711.png?1656919711", width = "10%"),
                        img(src = "https://www.cgiar.org/wp/wp-content/themes/cgiar/assets/images/logo-04dd455e58-04dd455e58.png", width = "10%")
                      ),
-                     column(
-                       width = 6,
-                       img(src = "https://s3.amazonaws.com/eventtia/event_logos/31142/medium/eialogovrgb16569197111656919711.png?1656919711", width = "10%")
-                     )
-                   ),
-                   
+  
+                   )
                  )
                )
              )
     )
   )
-)
+))
+
 
 
 # Define Server
