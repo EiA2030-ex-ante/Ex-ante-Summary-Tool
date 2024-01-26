@@ -116,19 +116,24 @@ ui <- shinyUI(fluidPage(
              fluidRow(
                column(
                  width = 12,
-                 h4("About this App"),
+                 h5("About this App"),
                  
                  HTML("This decision support tool was developed to support the identification of targeting objectives (e.g., the number of targeted beneficiaries) and associated initial ex ante impact estimates for agronomy projects in cases where detailed data are not available. For further discussion of how to use this tool, please see <a href='https://eia2030-ex-ante.github.io/Ex-ante-Summary-Tool/'> this guide</a>. This work was developed as part of <a href='https://www.cgiar.org/initiative/excellence-in-agronomy/'>Excellence in Agronomy (EiA)</a>, one of the initiatives of <a href='https://www.cgiar.org/food-security-impact/one-cgiar/'>One CGIAR</a>. The code used in the assembly of this tool is available at the <a href='https://github.com/EiA2030-ex-ante'>EiA GitHub Repository</a>. "
                  ),
                  
-                 h4("Variable Descriptions"),
+                 h5(""),
+                 
+                 h5("Variable Descriptions"),
                  div(style = "overflow-x: auto;",
                      DTOutput("variable_descriptions_table")
                  ),
                  fluidRow(
                    column(
                      width = 12,
-                     h4("Data Sources"),
+                     
+                     h5(""),
+                     
+                     h5("Data Sources"),
                      HTML(' <a href="https://gadm.org/data.html">GADM</a>, <a href="https://data.apps.fao.org/map/catalog/static/api/records/4e463d70-7593-11db-b9b2-000d939bc5d8">FAO</a>, <a href="https://hub.worldpop.org/project/categories?id=3">WorldPop</a>, <a href="https://data.apps.fao.org/catalog/iso/59f7a5ef-2be4-43ee-9600-a6a9e9ff562a">SPAM</a>')
                    ),
                    fluidRow(
